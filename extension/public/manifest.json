@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Локальный LangGraph Ассистент",
+  "version": "0.1.0",
+  "description": "Локальный ассистент по содержимому страниц на базе LangGraph и Groq",
+  "permissions": ["storage", "activeTab", "scripting", "sidePanel", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_title": "Открыть локального ассистента"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "minimum_chrome_version": "120"
+}

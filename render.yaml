@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: langgraph-chrome-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    plan: free
+    envVars:
+      - key: GROQ_MODEL
+        value: openai/gpt-oss-20b
+      - key: LOG_LEVEL
+        value: INFO
+      - key: ALLOWED_ORIGINS
+        value: http://localhost:5173,chrome-extension://*
+      - key: GROQ_API_KEY
+        sync: false
