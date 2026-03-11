@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: langgraph-chrome-backend
+    name: langgraph-chrome-backend-prod
     runtime: python
     rootDir: backend
     buildCommand: pip install -r requirements.txt
